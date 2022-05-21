@@ -1,0 +1,9 @@
+project: word-checker
+target: word-checker
+duration: 300
+image: ghcr.io/ebell495/word-checker:latest
+
+cmds:
+    - cmd: ./fuzz.jar @@
+      env:
+        MFUZZ_JAVA: '1'
