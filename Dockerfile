@@ -7,5 +7,5 @@ RUN mvn clean package && mvn dependency:copy-dependencies
 RUN mkdir ./fuzz/deps && find ./target -name "word-checker*.jar" -exec cp {} "./fuzz/deps/word-checker.jar" \; && cp ./target/dependency/* ./fuzz/deps && python3 fuzz/generate_classpath.py > fuzz/src/Manifest.txt
 WORKDIR /word-checker/fuzz/src
 # Build the fuzz target
-RUN javac -cp "../deps/*" fuzz.java && jar cfme fuzz.jar Manifest.txt fuzz fuzz.class && chmod u+x fuzz.jar && cp fuzz.jar /word-checker/fuzz/deps
+RUN javac -cp "../deps/*" fuzz_word_checker.java && jar cfme fuzz_word_checker.jar Manifest.txt fuzz_word_checker fuzz_word_checker.class && chmod u+x fuzz_word_checker.jar && cp fuzz_word_checker.jar /word-checker/fuzz/deps
 WORKDIR /word-checker/fuzz/deps
